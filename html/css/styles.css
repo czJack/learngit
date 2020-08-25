@@ -1,9 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+}
 a {
-    text-decoration: none;
+    /* text-decoration: none; */
+    background-color: rgba(0, 255, 0, 0);
 }
 
 h1 {
     text-align: center;
+    background-color: rgba(0,255,255,1);
+    margin: 0px 0px;
 }
 
 img {
