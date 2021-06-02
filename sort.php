@@ -30,6 +30,123 @@ function bubble_sort(array &$data)
 }
 
 /**
+ * @title 插入排序
+ * @user: cz9384
+ * @return
+ * @Date: 2021/6/2
+ * @throws
+ */
+function insert_sort(array &$data)
+{
+    $len = count($data);
+
+    for ($i = 1; $i < $len; $i++) {
+        $j = $i;
+        $value = $data[$j];
+        while($j > 0) {
+            if ($data[$j-1] > $value) {
+                $data[$j] = $data[$j-1];
+            }
+            $j--;
+        }
+        $data[$j] = $value;
+    }
+
+    return true;
+}
+
+/**
+ * @title 选择排序
+ * @user: cz9384
+ * @return
+ * @Date: 2021/6/2
+ * @throws
+ */
+function select_sort(array &$data)
+{
+    $len = count($data);
+
+    for ($i = 0; $i < $len - 1; $i++) {
+        $minIndex = $i;
+        for ($j = $i + 1; $j < $len; $j++) {
+            if ($data[$j] < $data[$minIndex]) {
+                $minIndex = $j;
+            }
+        }
+        if ($minIndex !== $i) {
+            swap($data, $minIndex, $i);
+        }
+    }
+
+    return true;
+}
+
+/**
+ * @title 归并排序
+ * @user: cz9384
+ * @return
+ * @Date: 2021/6/2
+ * @throws
+ */
+function mergeSort(array &$data)
+{
+    $len = count($data);
+    mSort($data, 0, $len-1);
+}
+
+/**
+ * @title 归并递归调用
+ * @user: cz9384
+ * @return
+ * @Date: 2021/6/2
+ * @throws
+ */
+function mSort(array &$data, $left, $right)
+{
+    if ($left >= $right) {
+        return;
+    }
+
+    $middle = (int)(($left + $right) / 2);
+
+    mSort($data, $left, $middle);
+    mSort($data, $middle + 1, $right);
+    merge($data, $left, $middle, $right);
+}
+
+/**
+ * @title 归并排序合并数组
+ * @user: cz9384
+ * @return
+ * @Date: 2021/6/2
+ * @throws
+ */
+function merge(array &$data, $left, $middle, $right)
+{
+    $a_i = $left;
+    $b_i = $middle+1;
+
+    while($a_i <= $middle && $b_i <= $right) {
+        if ($data[$a_i] < $data[$b_i]) {
+            $temp[] = $data[$a_i++];
+        } else {
+            $temp[] = $data[$b_i++];
+        }
+    }
+
+    while($a_i <= $middle) {
+        $temp[] = $data[$a_i++];
+    }
+    while($b_i <= $right) {
+        $temp[] = $data[$b_i++];
+    }
+
+    for ($i = 0,$len = count($temp);$i < $len; $i++) {
+        $data[$left+$i] = $temp[$i];
+    }
+}
+
+/**
  * @title 交换数组中两个元素
  * @user: cz9384
  * @return
