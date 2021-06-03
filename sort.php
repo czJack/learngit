@@ -147,6 +147,73 @@ function merge(array &$data, $left, $middle, $right)
 }
 
 /**
+ * @title 快速排序
+ * @user: cz9384
+ * @return
+ * @Date: 2021/6/3
+ * @throws
+ */
+function quick_sort(array &$data)
+{
+    $len = count($data);
+    qSort($data, 0, $len-1);
+}
+
+/**
+ * @title 快速排序递归实现
+ * @user: cz9384
+ * @return
+ * @Date: 2021/6/3
+ * @throws
+ */
+function qSort(array &$data, $left, $right)
+{
+    if ($left >= $right) {
+        return;
+    }
+
+    $k = partition($data, $left, $right); //获取之间位置 k
+
+    qSort($data, $left, $k-1);
+    qSort($data, $k+1, $right);
+}
+
+/**
+ * @title 数组分区获取中间索引
+ * @user: cz9384
+ * @return
+ * @Date: 2021/6/3
+ * @throws
+ */
+function partition(array &$data, $start, $end)
+{
+    $pivot = $data[$start]; //选择第一个值作为基准
+    $i = $start + 1;
+    $j = $end;
+
+    while($i !== $j) {
+        while($j !== $i) {
+            if ($data[$j] < $pivot) {
+                swap($data, $j, $start);
+                break;
+            } else {
+                $j--;
+            }
+        }
+        while($j !== $i) {
+            if ($data[$i] > $pivot) {
+                swap($data, $i, $start);
+                break;
+            } else {
+                $i++;
+            }
+        }
+    }
+
+    return array_search($pivot, $data);
+}
+
+/**
  * @title 交换数组中两个元素
  * @user: cz9384
  * @return
