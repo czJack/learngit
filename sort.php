@@ -214,6 +214,30 @@ function partition(array &$data, $start, $end)
 }
 
 /**
+ * @title 桶排序
+ * @user: cz9384
+ * @return
+ * @Date: 2021/6/3
+ * @throws
+ */
+function bucket_sort()
+{
+
+}
+
+/**
+ * @title 计数排序
+ * @user: cz9384
+ * @return
+ * @Date: 2021/6/3
+ * @throws
+ */
+function counting_sort()
+{
+
+}
+
+/**
  * @title 交换数组中两个元素
  * @user: cz9384
  * @return
